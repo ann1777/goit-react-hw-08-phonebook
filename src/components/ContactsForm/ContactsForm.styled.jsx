@@ -9,7 +9,7 @@ export const Form = styled.form`
   padding: 8px;
 
   max-width: 100%;
-  width: 500px;
+  width: 850px;
 `;
 
 export const FormField = styled.label`

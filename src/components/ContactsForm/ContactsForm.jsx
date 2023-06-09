@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import { useSelector, useDispatch } from 'react-redux';
 import { addContactThunk } from 'redux/phonebook/phonebook-operations';
-import { selectPhones } from 'redux/phonebook/phonebook-selectors';
 import {
   Form,
   FormField,
@@ -17,7 +16,7 @@ function ContactsForm() {
   const [number, setNumber] = useState('');
   const dispatch = useDispatch();
 
-  const contacts = useSelector(selectPhones);
+  const contacts = useSelector(state => state.contacts.contacts);
   // console.log(contacts);
 
   const onNameChange = e => {
@@ -30,21 +29,17 @@ function ContactsForm() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    try {
-      const newContact = {
-        id: nanoid(),
-        name,
-        number,
-      };
-      if (contacts.find(el => el.name.toLowerCase() === name.toLowerCase())) {
-        return alert(`${name} is already in contacts.`);
-      }
-      dispatch(addContactThunk(newContact));
-      setName('');
-      setNumber('');
-    } catch (error) {
-      console.log(error.message);
+    const newContact = {
+      id: nanoid(),
+      name, 
+      number,
+    };
+    if (contacts.find(el => el.name.toLowerCase() === name.toLowerCase())) {
+      return alert(`${name} is already in contacts.`);
     }
+    dispatch(addContactThunk(newContact));
+    setName('');
+    setNumber('');
   };
 
   return (
