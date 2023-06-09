@@ -1,15 +1,13 @@
 import styled from 'styled-components';
 
 export const FooterItems = styled.footer`
-  display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0px;
+  width: 100%;
 
   min-height: 44px;
-  padding-right: 16px;
-  padding-left: 16px;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding: 0px;
 
   color: '#000';
   text-shadow: 0 -0.4px 0.4px #ffffff, 0.4px 0.4px 0.4px #00000031;

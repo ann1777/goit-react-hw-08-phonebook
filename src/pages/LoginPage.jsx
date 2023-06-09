@@ -69,7 +69,8 @@ export const LoginPage = () => {
         container
         component="main"
         sx={{
-          height: '100vh',
+		  height: '100vh',
+		  width: '100vh',
 		  backgroundImage: `url("https://untree.co/wp-content/uploads/2022/01/modern-login-signup-form.jpg")`,
           backgroundRepeat: 'no-repeat',
           backgroundColor: c =>
