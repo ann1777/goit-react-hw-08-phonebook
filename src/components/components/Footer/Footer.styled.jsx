@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
 export const FooterItems = styled.footer`
+  position: fixed;
+  left: 0;
+  bottom: 0;
   justify-content: center;
   align-items: center;
   margin: 0px;
