@@ -6,14 +6,12 @@ import { Avatar, Chip } from '@mui/material';
 
 export const UserBadge = () => {
   const dispatch = useDispatch();
-  const { user } = useAuth();
+  const user = useAuth();
 
   const handleLogOut = () => dispatch(logOutUserThunk());
 
   return (
     <Wrapper>
-      <p>Welcome, {user.name}</p>
-
       <Chip
         avatar={
           <StyledBadge

@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
   gap: 12px;
 
   > p {
-    color: ${props => props.theme.colors.primary};
+    color: '#f7eff4';
     text-shadow: 0 -0.4px 0.4px #ffffff, 1px 1px 1px #00000031;
     font-weight: 700;
   }

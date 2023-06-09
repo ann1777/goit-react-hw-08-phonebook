@@ -51,3 +51,15 @@ export const deleteContactThunk = createAsyncThunk(
 		}
 	}
 );
+
+export const isDublicated = (contacts, { name, number }) => {
+    const normalizedName = name.toLowerCase().trim();
+    const normalizedNumber = number.trim();
+  
+    const dublicate = contacts.some(
+      contact =>
+        contact.name.toLowerCase().trim() === normalizedName ||
+        contact.number.trim() === normalizedNumber
+    );
+    return dublicate;
+  };

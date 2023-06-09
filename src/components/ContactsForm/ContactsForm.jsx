@@ -30,17 +30,21 @@ function ContactsForm() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const newContact = {
-      id: nanoid(),
-      name, 
-      number,
-    };
-    if (contacts.find(el => el.name.toLowerCase() === name.toLowerCase())) {
-      return alert(`${name} is already in contacts.`);
+    try {
+      const newContact = {
+        id: nanoid(),
+        name,
+        number,
+      };
+      if (contacts.find(el => el.name.toLowerCase() === name.toLowerCase())) {
+        return alert(`${name} is already in contacts.`);
+      }
+      dispatch(addContactThunk(newContact));
+      setName('');
+      setNumber('');
+    } catch (error) {
+      console.log(error.message);
     }
-    dispatch(addContactThunk(newContact));
-    setName('');
-    setNumber('');
   };
 
   return (
