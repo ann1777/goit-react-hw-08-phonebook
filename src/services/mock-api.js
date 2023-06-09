@@ -1,4 +1,4 @@
-import { authInstance } from './authServices';
+import { authInstance } from '/auth-services';
 
 export const fetchContacts  = () => authInstance.get('/contacts');
 

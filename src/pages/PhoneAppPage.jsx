@@ -8,12 +8,12 @@ import ContactList from 'components/ContactList/ContactList';
 import { theme } from 'components/theme';
 import { Title } from 'components/Title/Title';
 
-export const PhonebookPage = () => {
+export const PhoneAppPage = () => {
   return (
     <>
       <ThemeProvider theme={theme}>
         <Section>
-          <Title title="Phonebook" />
+          <Title title="Phone book" />
           <ContactsForm/>
           <Title title="Contacts" />
           <ContactsFilter/>

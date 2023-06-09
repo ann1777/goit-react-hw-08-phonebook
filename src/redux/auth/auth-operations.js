@@ -1,6 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
-import axios from "axios";
 
 import {
   userLogin,
@@ -8,11 +7,6 @@ import {
   userLogout,
   userCurrent,
 } from 'services/auth-services';
-
-const token = {
-  set (token) {axios.defaults.headers.common.Authorization = `Bearer ${token}`},
-  unset () {axios.defaults.headers.common.Authorization = ''}
-}
 
 export const registerUserThunk = createAsyncThunk(
   'auth/register',
@@ -23,11 +17,10 @@ export const registerUserThunk = createAsyncThunk(
         position: 'bottom-right',
         autoClose: 1500,
       });
-      //console.log('register:', result);
-      token.set(data.token)
+      console.log('register:', result);
       return result;
-    } catch (error) {
-      return rejectWithValue(`Ooops! Something went wrong...`, error.message);
+    } catch ({ error }) {
+      return rejectWithValue(`Oops! Something went wrong...`, error.message);
     }
   }
 );
@@ -41,10 +34,10 @@ export const logInUserThunk = createAsyncThunk(
         position: 'bottom-right',
         autoClose: 1500,
       });
-      //console.log('login:', result);
+      console.log('login:', result);
       return result;
     } catch (error) {
-      return rejectWithValue(`Ooops! Something went wrong...`, error.message);
+      return rejectWithValue(`Oops! Something went wrong...`, error.message);
     }
   }
 );
@@ -61,7 +54,7 @@ export const logOutUserThunk = createAsyncThunk(
       //console.log('logout:', data);
       return data;
     } catch (error) {
-      return rejectWithValue(`Ooops! Something went wrong...`, error.message);
+      return rejectWithValue(`Oops! Something went wrong...`, error.message);
     }
   }
 );
@@ -74,10 +67,10 @@ export const getCurrentUserThunk = createAsyncThunk(
         auth: { token },
       } = getState();
       const { data } = await userCurrent(token);
-      //console.log('currentUser:', data);
+      console.log('currentUser:', data);
       return data;
     } catch (error) {
-      return rejectWithValue(`Ooops! Something went wrong...`, error.message);
+      return rejectWithValue(`Oops! Something went wrong...`, error.message);
     }
   },
   {

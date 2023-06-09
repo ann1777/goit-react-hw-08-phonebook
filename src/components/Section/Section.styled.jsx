@@ -9,7 +9,8 @@ export const SectionWrapper = styled.section`
   padding-bottom: 16px;
 
   max-width: 100%;
-  width: 600px;
+  height: 85vh;
+  width: auto;
 
   mix-blend-mode: normal;
   filter: drop-shadow(0px 18px 80px rgba(265, 265, 265, 1));
