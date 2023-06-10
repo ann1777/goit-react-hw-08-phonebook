@@ -29,7 +29,7 @@ const defaultTheme = createTheme({
   },
 });
 
-const Header = () => {
+const Header = () => { 
   const { isLoggedIn } = useAuth();
   const [mobileOpen, setMobileOpen] = useState(false);
   const Logo = 'https://cdn2.iconfinder.com/data/icons/email-58/65/45-512.png';

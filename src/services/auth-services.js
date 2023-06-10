@@ -41,5 +41,6 @@ export const userLogout = async () => {
 export const userCurrent = async token => {
   setAuthHeader(token);
   const response = await authInstance.get('/users/current');
+  console.log("userCurrent", response)
   return response;
 };

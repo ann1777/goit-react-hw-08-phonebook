@@ -69,6 +69,7 @@ export function RegistrationPage() {
         component="main"
         sx={{
           height: '100vh',
+          width: '100vh',
           backgroundImage: `url("https://mir-s3-cdn-cf.behance.net/project_modules/1400/aa50c798859809.5ee5fbc812ec0.png")`,
           backgroundRepeat: 'no-repeat',
           backgroundColor: c =>

@@ -7,7 +7,7 @@ import {
 } from 'redux/phonebook/phonebook-operations';
 import {
   selectPhones,
-  selectFilter,
+  // selectFilter,
 } from 'redux/phonebook/phonebook-selectors';
 import { selectFilteredContacts } from 'redux/selectors';
 
