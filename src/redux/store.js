@@ -12,12 +12,12 @@ import {
 import persistedAuthReducer from './auth/auth-slice';
 
 export const store = configureStore({
-  reducer: { 
-    contacts: contactsReducer, 
+  reducer: {
+    contacts: contactsReducer,
     filter: filterReducer,
-    auth: persistedAuthReducer 
+    auth: persistedAuthReducer,
   },
-    middleware: getDefaultMiddleware =>
+  middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],

@@ -1,12 +1,12 @@
 import { Suspense, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { SharedLayout } from 'modules/SharedLayout';
+import { Layout } from './components/Layout/Layout';
 import { RestrictedRoute } from './RestrictedRoute';
-import { Loader } from './Loader/Loader';
+import { Loader } from './components/Loader/Loader';
 import { PrivateRoute } from './PrivateRoute';
 
 const HomePage = lazy(() => import('pages/HomePage'));
-const ContactsPage = lazy(() => import('pages/ContactsPage'));
+const ContactsPage = lazy(() => import('pages/PhoneAppPage'));
 const LoginPage = lazy(() => import('pages/LoginPage'));
 const RegistrationPage = lazy(() => import('pages/RegistrationPage'));
 const PageNotFound = lazy(() => import('pages/PageNotFound/PageNotFound'));
@@ -15,13 +15,13 @@ const UserRoutes = () => {
   return (
     <Suspense fallback={<Loader />}>
       <Routes>
-        <Route path="/" element={<SharedLayout />}>
+        <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route
-            path="register"
+            path="registration"
             element={
               <RestrictedRoute
-                redirectTo="/contacts"
+                redirectTo="/registration"
                 component={<RegistrationPage />}
               />
             }
@@ -30,7 +30,7 @@ const UserRoutes = () => {
             path="login"
             element={
               <RestrictedRoute
-                redirectTo="/contacts"
+                redirectTo="/login"
                 component={<LoginPage />}
               />
             }
@@ -38,7 +38,7 @@ const UserRoutes = () => {
           <Route
             path="contacts"
             element={
-              <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
+              <PrivateRoute redirectTo="/contacts" component={<ContactsPage />} />
             }
           />
           <Route path="*" element={<PageNotFound />} />

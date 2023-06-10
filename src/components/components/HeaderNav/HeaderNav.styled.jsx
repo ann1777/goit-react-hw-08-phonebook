@@ -31,7 +31,7 @@ export const NavLink = styled(Link)`
     background-color: transparent;
     color: '#f7eff4';
     text-shadow: ' 0.0313rem 0.0313rem 0rem #baa2c5, -0.0313rem -0.0313rem 0rem #ffffff';
-      
+
     cursor: pointer;
   }
 `;

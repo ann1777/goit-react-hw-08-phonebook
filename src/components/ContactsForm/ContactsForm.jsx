@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import { useSelector, useDispatch } from 'react-redux';
 import { addContactThunk } from 'redux/phonebook/phonebook-operations';
+import { selectPhones } from 'redux/phonebook/phonebook-selectors';
 import {
   Form,
   FormField,
@@ -16,13 +17,12 @@ function ContactsForm() {
   const [number, setNumber] = useState('');
   const dispatch = useDispatch();
 
-  const contacts = useSelector(state => state.contacts.contacts);
+  const contacts = useSelector(selectPhones);
   // console.log(contacts);
 
   const onNameChange = e => {
     setName(e.target.value);
   };
-
   const onInputChange = e => {
     setNumber(e.target.value);
   };
@@ -31,7 +31,7 @@ function ContactsForm() {
     e.preventDefault();
     const newContact = {
       id: nanoid(),
-      name, 
+      name,
       number,
     };
     if (contacts.find(el => el.name.toLowerCase() === name.toLowerCase())) {

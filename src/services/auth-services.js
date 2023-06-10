@@ -6,7 +6,7 @@ export const authInstance = axios.create({
 // axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 export const setAuthHeader = token => {
   authInstance.defaults.headers.common.Authorization = `Bearer ${token}`;
-// axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  // axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   console.log(token);
 };
 
@@ -16,7 +16,10 @@ export const clearAuthHeader = () => {
 };
 
 export const userSignUp = async credentials => {
-  const { data: result } = await authInstance.post('/users/signup', credentials);
+  const { data: result } = await authInstance.post(
+    '/users/signup',
+    credentials
+  );
   setAuthHeader(result.token);
   console.log(result);
   return result;

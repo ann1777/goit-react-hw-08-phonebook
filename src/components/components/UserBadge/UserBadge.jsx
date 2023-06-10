@@ -1,12 +1,12 @@
 import { useDispatch } from 'react-redux';
 import { logOutUserThunk } from 'redux/auth/auth-operations';
 import { StyledBadge, Wrapper } from './UserBadge.styled';
-import { useAuth } from 'redux/auth/useAuth';
-import { Avatar, Chip } from '@mui/material';
-
+// import { useAuth } from 'redux/auth/useAuth';
+import { Chip } from '@mui/material';
+// import { Avatar } from '@mui/material';
 export const UserBadge = () => {
   const dispatch = useDispatch();
-  const user = useAuth();
+  // const { user } = useAuth();
 
   const handleLogOut = () => dispatch(logOutUserThunk());
 
@@ -19,11 +19,11 @@ export const UserBadge = () => {
             anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
             variant="dot"
           >
-            <Avatar
+            {/* <Avatar
               alt="avatar"
               src={`https://source.unsplash.com/1200x1200?${user.name}`}
               sx={{ width: 24, height: 24 }}
-            />
+            /> */}
           </StyledBadge>
         }
         label="LogOut"

@@ -24,7 +24,7 @@ function App() {
           {/* {isUser ? ( */}
             <Route path="/login" element={<LoginPage />} />
           {/* ) : ( */}
-            <Route path="/register" element={<RegistrationPage />} />
+            <Route path="/registration" element={<RegistrationPage />} />
           {/* )} */}
           <Route path="/contacts" element={<PhoneAppPage />} />
         </Route>

@@ -13,20 +13,20 @@ export const contactsSlice = createSlice({
     isLoading: false,
     error: '',
   },
-  extraReducers: builder => { builder
-    .addCase(fetchContactsThunk.fulfilled, (state, { payload }) => {
-      state.contacts = payload;
-    })
-    .addCase(addContactThunk.fulfilled, (state, { payload }) => {
+  extraReducers: builder => {
+    builder
+      .addCase(fetchContactsThunk.fulfilled, (state, { payload }) => {
+        state.contacts = payload;
+      })
+      .addCase(addContactThunk.fulfilled, (state, { payload }) => {
         state.contacts.push(payload);
-    })
-    .addCase(deleteContactThunk.fulfilled, (state, { payload }) => {
-        const contactId = state.contacts.findIndex(
-          item => item.id === payload);
+      })
+      .addCase(deleteContactThunk.fulfilled, (state, { payload }) => {
+        const contactId = state.contacts.findIndex(item => item.id === payload);
         state.contacts.splice(contactId, 1);
-    })   
-  }
-})
+      });
+  },
+});
 
 export const filterSlice = createSlice({
   name: 'filter',

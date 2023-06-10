@@ -6,7 +6,17 @@ import { Link, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { registerUserThunk } from 'redux/auth/auth-operations';
 import { useState } from 'react';
-import { Avatar, Box, Button, Checkbox, CssBaseline, FormControlLabel, Grid, Paper, TextField } from '@mui/material';
+import {
+  Avatar,
+  Box,
+  Button,
+  Checkbox,
+  CssBaseline,
+  FormControlLabel,
+  Grid,
+  Paper,
+  TextField,
+} from '@mui/material';
 
 const defaultTheme = createTheme({
   palette: {
@@ -59,7 +69,7 @@ export function RegistrationPage() {
         component="main"
         sx={{
           height: '100vh',
-		  backgroundImage: `url("https://mir-s3-cdn-cf.behance.net/project_modules/1400/aa50c798859809.5ee5fbc812ec0.png")`,
+          backgroundImage: `url("https://mir-s3-cdn-cf.behance.net/project_modules/1400/aa50c798859809.5ee5fbc812ec0.png")`,
           backgroundRepeat: 'no-repeat',
           backgroundColor: c =>
             c.palette.mode === 'light'

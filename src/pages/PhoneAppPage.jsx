@@ -14,14 +14,13 @@ export const PhoneAppPage = () => {
       <ThemeProvider theme={theme}>
         <Section>
           <Title title="Phone book" />
-          <ContactsForm/>
+          <ContactsForm />
           <Title title="Contacts" />
-          <ContactsFilter/>
-          <ContactList/>
+          <ContactsFilter />
+          <ContactList />
         </Section>
         <GlobalStyle />
       </ThemeProvider>
     </>
   );
-}
-
+};

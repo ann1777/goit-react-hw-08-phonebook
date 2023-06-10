@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { AppBar, Nav, NavBlock, UserBlock } from './Header.styled';
 import HeaderAuth from '../HeaderAuth/HeaderAuth';
 import { useAuth } from 'redux/auth/useAuth';
-import { HeaderNav } from '../HeaderNav/HeaderNav'
+import { HeaderNav } from '../HeaderNav/HeaderNav';
 import { UserBadge } from '../UserBadge/UserBadge';
 
 import {
@@ -32,6 +32,7 @@ const defaultTheme = createTheme({
 const Header = () => {
   const { isLoggedIn } = useAuth();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const Logo = 'https://cdn2.iconfinder.com/data/icons/email-58/65/45-512.png';
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -39,7 +40,10 @@ const Header = () => {
 
   const mobileMenu = (
     <ThemeProvider theme={defaultTheme}>
-      <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
+      <Box
+        onClick={handleDrawerToggle}
+        sx={{ textAlign: 'center', padding: 0 }}
+      >
         <Typography
           color="primary.main"
           variant="h6"
@@ -53,21 +57,30 @@ const Header = () => {
           }}
         >
           <Link to="/">
-		  <img src={"https://cdn2.iconfinder.com/data/icons/email-58/65/45-512.png"} alt="logo" width={48} />
-            {/* <img src={Logo} alt="logo" width={48} /> */}
+            <img src={Logo} alt="logo" width={48} />
           </Link>
         </Typography>
         <Divider />
         <Nav>
           <HeaderNav />
         </Nav>
+        <UserBlock>{isLoggedIn ? <UserBadge /> : <HeaderAuth />}</UserBlock>
       </Box>
     </ThemeProvider>
   );
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Box component={'header'} sx={{ position: 'fixed', top: 0, left: 0, height: '44px', width: '100%' }}>
+      <Box
+        component={'header'}
+        sx={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          height: '44px',
+          width: '100%',
+        }}
+      >
         <AppBar
           component={'nav'}
           sx={{
@@ -103,7 +116,7 @@ const Header = () => {
               sx={{ my: 2, display: { xs: 'none', sm: 'block' } }}
             >
               <Link to="/">
-                <img src={"https://cdn2.iconfinder.com/data/icons/email-58/65/45-512.png"} alt="logo" width={48} />
+                <img src={Logo} alt="logo" width={48} />
               </Link>
             </Typography>
             <Box

@@ -2,6 +2,11 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { AppBar as HeaderBlock } from '@mui/material';
 
+export const Header = styled.header`
+  display: flex;
+  padding: 0 5px;
+`
+
 export const LinkNav = styled(NavLink)`
   padding: 8px 16px;
   border-radius: 4px;
