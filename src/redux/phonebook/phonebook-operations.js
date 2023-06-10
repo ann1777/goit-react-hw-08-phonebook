@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 // import * as mockApi from 'services/mock-api';
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com/';
 
@@ -11,6 +12,10 @@ export const fetchContactsThunk = createAsyncThunk(
       const { data } = await axios.get('contacts');
       return data;
     } catch (error) {
+      toast.error('Oops! Something went wrong... Getting contacts failed', {
+        position: 'bottom-right',
+        autoClose: 1500,
+      });
       return rejectWithValue(error.message);
     }
   }
@@ -25,6 +30,10 @@ export const addContactThunk = createAsyncThunk(
       const { data } = await axios.post('contacts', contact);
       return data;
     } catch (error) {
+      toast.error('Oops! Something went wrong... Creating new contact failed', {
+        position: 'bottom-right',
+        autoClose: 1500,
+      });
       return rejectWithValue(error.message);
     }
   }
@@ -39,6 +48,10 @@ export const deleteContactThunk = createAsyncThunk(
       dispatch(fetchContactsThunk());
       // return id;
     } catch (error) {
+      toast.error('Oops! Something went wrong... Delete contact failed', {
+        position: 'bottom-right',
+        autoClose: 1500,
+      });
       return rejectWithValue(error.message);
     }
   },

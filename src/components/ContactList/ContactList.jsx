@@ -9,6 +9,7 @@ import {
   selectPhones,
   selectFilter,
 } from 'redux/phonebook/phonebook-selectors';
+import { selectFilteredContacts } from 'redux/selectors';
 
 function ContactList() {
   const dispatcher = useDispatch();
@@ -16,10 +17,12 @@ function ContactList() {
     dispatcher(fetchContactsThunk());
   }, [dispatcher]);
   const contacts = useSelector(selectPhones);
+  console.log("I am hereFetching contacts", contacts);
+  const filter = useSelector(selectFilteredContacts);
+  console.log(filter);
   console.log(contacts);
-  const filter = useSelector(selectFilter);
   const filteredContacts = contacts.filter(el => {
-    console.log(el);
+    console.log("Filtered el", el);
     return el.name.toLowerCase().includes(filter.toLowerCase());
   });
 

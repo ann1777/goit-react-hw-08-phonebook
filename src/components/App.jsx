@@ -1,8 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import { Suspense, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getCurrentUserThunk } from 'redux/auth/auth-operations';
-import { selectIsUser } from 'redux/selectors';
+// import { selectIsUser } from 'redux/selectors';
 import { Layout } from './components/Layout/Layout';
 import {RegistrationPage} from 'pages/RegistrationPage';
 import { LoginPage } from 'pages/LoginPage';
@@ -10,7 +10,7 @@ import { PhoneAppPage } from 'pages/PhoneAppPage';
 import HomePage from 'pages/HomePage';
 
 function App() {
-  const isUser = useSelector(selectIsUser);
+  // const isUser = useSelector(selectIsUser);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCurrentUserThunk());

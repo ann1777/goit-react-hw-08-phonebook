@@ -37,7 +37,11 @@ export const logInUserThunk = createAsyncThunk(
       console.log('login:', result);
       return result;
     } catch (error) {
-      return rejectWithValue(`Oops! Something went wrong...`, error.message);
+      toast.error('Oops! Something went wrong... Login failed', {
+        position: 'bottom-right',
+        autoClose: 1500,
+      });
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -54,6 +58,10 @@ export const logOutUserThunk = createAsyncThunk(
       //console.log('logout:', data);
       return data;
     } catch (error) {
+      toast.error('Oops! Something went wrong... Logout failed', {
+        position: 'bottom-right',
+        autoClose: 1500,
+      });
       return rejectWithValue(`Oops! Something went wrong...`, error.message);
     }
   }
@@ -70,6 +78,10 @@ export const getCurrentUserThunk = createAsyncThunk(
       console.log('currentUser:', data);
       return data;
     } catch (error) {
+      toast.error('Oops! Something went wrong... Get current user failed', {
+        position: 'bottom-right',
+        autoClose: 1500,
+      });
       return rejectWithValue(`Oops! Something went wrong...`, error.message);
     }
   },

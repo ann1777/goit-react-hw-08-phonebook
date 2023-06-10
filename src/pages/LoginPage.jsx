@@ -180,7 +180,7 @@ export const LoginPage = () => {
                 </Grid>
                 <Grid item>
                   {onSignIn && (
-                    <Link to={`/register`} variant="body2" color="primary">
+                    <Link to={`/registration`} variant="body2" color="primary">
                       {"Don't have an account? Sign Up"}
                     </Link>
                   )}
