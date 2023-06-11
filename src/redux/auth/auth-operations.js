@@ -12,13 +12,13 @@ export const registerUserThunk = createAsyncThunk(
   'auth/register',
   async (credentials, { rejectWithValue }) => {
     try {
-      const result = await userSignUp(credentials);
+      const data = await userSignUp(credentials);
       toast.success('Successfully registered!', {
         position: 'bottom-right',
         autoClose: 1500,
       });
-      console.log('register:', result);
-      return result;
+      console.log('register:', data);
+      return data;
     } catch ({ error }) {
       return rejectWithValue(`Oops! Something went wrong...`, error.message);
     }
@@ -29,13 +29,13 @@ export const logInUserThunk = createAsyncThunk(
   'auth/login',
   async (credentials, { rejectWithValue }) => {
     try {
-      const result = await userLogin(credentials);
+      const data = await userLogin(credentials);
       toast.success('Successfully logged!', {
         position: 'bottom-right',
         autoClose: 1500,
       });
-      console.log('login:', result);
-      return result;
+      console.log('login:', data);
+      return data;
     } catch (error) {
       toast.error('Oops! Something went wrong... Login failed', {
         position: 'bottom-right',

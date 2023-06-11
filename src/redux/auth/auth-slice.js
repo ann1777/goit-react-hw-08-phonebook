@@ -1,10 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import {
-  userSignUp,
-  userLogin,
-  userLogout,
-  userCurrent,
-} from '../../services/auth-services';
+  registerUserThunk,
+  logInUserThunk,
+  logOutUserThunk,
+  getCurrentUserThunk,
+} from './auth-operations';
+import actions from 'redux/phonebook/phonebook-actions';
 
 const initialState = {
   user: { name: null, email: null },
@@ -13,81 +14,66 @@ const initialState = {
   isLoggedIn: false,
   isFetchCurrentUser: false,
   isLoading: false,
-  //   isLoggedIn: false,
-  //   isRefreshing: false,
 };
+
+const customArrThunks = [registerUserThunk, logInUserThunk];
+
+const status = {
+  pending: "pending",
+  fulfilled: "fulfilled",
+  rejected: "rejected",
+};
+
+const fn = status => customArrThunks.map(el => el[status]);
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  extraReducers: {
-    [userSignUp.pending]: (state, _) => {
+  extraReducers: builder => {
+    const { pending, fulfilled, rejected } = status;
+    builder
+    .addCase(logOutUserThunk.pending, state => {
       state.error = null;
       state.isLoading = true;
-    },
-
-    [userLogin.pending]: (state, _) => {
-      state.error = null;
-      state.isLoading = true;
-    },
-
-    [userLogout.pending]: (state, _) => {
-      state.error = null;
-      state.isLoading = true;
-    },
-
-    [userCurrent.pending]: (state, _) => {
-      state.isFetchCurrentUser = true;
-      state.isLoading = true;
-    },
-
-    [userSignUp.rejected]: (state, action) => {
+      return state;})
+    .addCase(logOutUserThunk.rejected, state => {
       state.isLoading = false;
-      state.error = action.error.message;
-    },
-
-    [userLogin.rejected]: (state, action) => {
-      state.isLoading = false;
-      state.error = action.error.message;
-    },
-
-    [userLogout.rejected]: (state, action) => {
-      state.isLoading = false;
-      state.error = action.error.message;
-    },
-
-    [userCurrent.rejected]: (state, _) => {
-      state.isFetchCurrentUser = false;
-      state.isLoading = false;
-    },
-
-    [userSignUp.fulfilled]: (state, { payload }) => {
-      state.user = payload.user;
-      state.token = payload.token;
-      state.isLoggedIn = true;
-      state.isLoading = false;
-    },
-
-    [userLogin.fulfilled]: (state, { payload }) => {
-      state.user = payload.user;
-      state.token = payload.token;
-      state.isLoggedIn = true;
-      state.isLoading = false;
-    },
-
-    [userLogout.fulfilled]: (state, _) => {
+      state.error = actions.error.message;
+      return state;})
+    .addCase(logOutUserThunk.fulfilled, (state, _) => {
       state.user = { name: null, email: null };
       state.token = null;
       state.isLoggedIn = false;
       state.isLoading = false;
-    },
-
-    [userCurrent.fulfilled]: (state, { payload }) => {
+      return state;})
+    .addCase(getCurrentUserThunk.pending, (state, _) => {
+      state.isFetchCurrentUser = true;
+      state.isLoading = true;
+      return state;})
+    .addCase(getCurrentUserThunk.rejected, (state, _) => {
+      state.isFetchCurrentUser = false;
+      state.isLoading = false;
+      return state;})
+    .addCase(getCurrentUserThunk.fulfilled, (state, { payload }) => {
       state.user = payload;
       state.isLoggedIn = true;
       state.isFetchCurrentUser = false;
       state.isLoading = false;
-    },
+      return state;})
+    .addMatcher(isAnyOf(...fn(pending)), state => {
+      state.error = null;
+      state.isLoading = true;
+      return state;})
+    .addMatcher(isAnyOf(...fn(fulfilled)), (state, _) => {
+      state.user = { name: null, email: null };
+      state.token = null;
+      state.isLoggedIn = false;
+      state.isLoading = false;
+      return state;})
+    .addMatcher(isAnyOf(...fn(rejected)), state => {
+      state.isLoading = false;
+      state.error = true;
+      return state;})    
   },
 });
 
