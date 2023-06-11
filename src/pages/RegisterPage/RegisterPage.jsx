@@ -102,7 +102,7 @@ export function RegisterPage() {
             component={Paper}
             elevation={24}
             square
-            sx={{
+            sy={{
               height: '100vh',
               background: '#ffffffb0',
               backdropFilter: 'blur(7.5px)',

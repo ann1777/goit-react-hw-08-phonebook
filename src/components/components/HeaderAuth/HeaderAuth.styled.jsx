@@ -23,5 +23,6 @@ export const NavWrap = styled.div`
 `;
 
 export const WelcomeMsg = styled.h1`
-   color: '#312eec'
+   font-weight: 700;
+   color: blue;
 `;

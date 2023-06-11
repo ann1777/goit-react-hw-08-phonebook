@@ -7,11 +7,11 @@ export const getContactsList = state => state.contacts.items;
 export const getFiltredContactsList = createSelector(
     [getFilterValue, getContactsList],
     (filter, contacts) => {
-      const normalizeFilter = filter.toLowerCase();
+      const normalizeFilter = filter.toLowerCase;
       return contacts
         .filter(
           ({ name, number }) =>
-            name.toLowerCase().includes(normalizeFilter) ||
+            name.toLowerCase.includes(normalizeFilter) ||
             number.includes(normalizeFilter),
         )
         .sort((a, b) => a.name.localeCompare(b.name));

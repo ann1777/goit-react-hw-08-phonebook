@@ -6,6 +6,7 @@ import {
   getCurrentUserThunk,
 } from './auth-operations';
 import actions from 'redux/phonebook/phonebook-actions';
+import { selectIsUser, selectToken } from 'redux/selectors';
 
 const initialState = {
   user: { name: null, email: null },
@@ -65,9 +66,9 @@ const authSlice = createSlice({
       state.isLoading = true;
       return state;})
     .addMatcher(isAnyOf(...fn(fulfilled)), (state, _) => {
-      state.user = { name: null, email: null };
-      state.token = null;
-      state.isLoggedIn = false;
+      state.user = { name: selectIsUser.name, email: selectIsUser.mail };
+      state.token = selectToken;
+      state.isLoggedIn = true;
       state.isLoading = false;
       return state;})
     .addMatcher(isAnyOf(...fn(rejected)), state => {

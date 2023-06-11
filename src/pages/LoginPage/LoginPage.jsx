@@ -38,7 +38,7 @@ export const LoginPage = () => {
   };
   let emailInputId = nanoid(3);
   let passwordInputId = nanoid(3);
-
+  
   return (
     <ThemeProvider>
       <Grid
@@ -63,7 +63,7 @@ export const LoginPage = () => {
           component={Paper}
           elevation={24}
           square
-          sx={{
+          sy={{
             height: '100vh',
             background: '#ffffffb0',
             backdropFilter: 'blur(7.5px)',
@@ -79,14 +79,15 @@ export const LoginPage = () => {
             }}
           >
             <Avatar
-              sx={{                m: 1,
+              sx={{
+                m: 1,
                 bgColor: 'primary.main',
                 boxShadow: 3,
                 color: '#fff',
                 // color: '#00000031',
-              }}
+              }}c
             >
-              <LockOutlinedIcon />
+           <LockOutlinedIcon />
             </Avatar>
             <Typography
               component="h1"
@@ -96,7 +97,7 @@ export const LoginPage = () => {
                 textShadow: '-1px -1px 1px #ffffff31, 1px 1px 1px #00000031',
               }}
             >
-              SignIn
+              LogIn
             </Typography>
             <Box
               component="form"
@@ -141,7 +142,7 @@ export const LoginPage = () => {
                   variant="contained"
                   sx={{ mt: 3, mb: 2, boxShadow: 3 }}
                 >
-                  Sign In
+                  LogIn
                 </Button>
               </Grid>
 
