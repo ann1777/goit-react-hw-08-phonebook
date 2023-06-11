@@ -18,6 +18,7 @@ import { Link } from 'react-router-dom';
 // const primary = green[200];
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { WelcomeMsg } from '../HeaderAuth/HeaderAuth.styled';
 const defaultTheme = createTheme({
   palette: {
     primary: {
@@ -29,7 +30,7 @@ const defaultTheme = createTheme({
   },
 });
 
-const Header = () => { 
+const Header = () => {
   const { isLoggedIn } = useAuth();
   const [mobileOpen, setMobileOpen] = useState(false);
   const Logo = 'https://cdn2.iconfinder.com/data/icons/email-58/65/45-512.png';
@@ -59,7 +60,7 @@ const Header = () => {
           <Link to="/">
             <img src={Logo} alt="logo" width={48} />
           </Link>
-        </Typography>
+        </Typography> 
         <Divider />
         <Nav>
           <HeaderNav />

@@ -9,10 +9,10 @@ import {
   InputField,
   StyledButton,
   LabelWrapper,
-  ErrorMessage,
   ValidationMessage,
 } from './ContactsForm.styled';
 import { toast } from 'react-toastify';
+import { ErrorMessage } from 'formik';
 
 function ContactsForm() {
   const [name, setName] = useState('');
