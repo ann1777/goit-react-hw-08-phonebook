@@ -28,7 +28,9 @@ export const LoginPage = () => {
 
   const [empty, setEmpty] = useState({ email: false, password: false });
 
-  const handleSubmit = data => {
+  const handleSubmit = e => {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
     dispatch(logInUserThunk(data));
     setEmpty(data);
   };
