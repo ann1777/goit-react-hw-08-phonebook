@@ -18,7 +18,6 @@ import { Link } from 'react-router-dom';
 // const primary = green[200];
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { WelcomeMsg } from '../HeaderAuth/HeaderAuth.styled';
 const defaultTheme = createTheme({
   palette: {
     primary: {

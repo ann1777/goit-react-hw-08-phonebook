@@ -50,13 +50,13 @@ export const logOutUserThunk = createAsyncThunk(
   'auth/logout',
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await userLogout();
+      await userLogout();
       toast.success('Successfully logout!', {
         position: 'bottom-right',
         autoClose: 1500,
       });
       //console.log('logout:', data);
-      return data;
+     
     } catch (error) {
       toast.error('Oops! Something went wrong... Logout failed', {
         position: 'bottom-right',
@@ -69,7 +69,7 @@ export const logOutUserThunk = createAsyncThunk(
 
 export const getCurrentUserThunk = createAsyncThunk(
   'auth/current',
-  async (_, { rejectWithValue, getState }) => {
+  async (_, { getState, rejectWithValue }) => {
     try {
       const state = getState();
       const savedToken = state.auth.token;

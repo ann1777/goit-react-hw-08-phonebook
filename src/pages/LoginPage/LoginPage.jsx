@@ -30,8 +30,10 @@ export const LoginPage = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    dispatch(logInUserThunk(data));
+    const data = {
+      email: e.currentTarget.elements.email.value,
+      password: e.currentTarget.elements.password.value,
+    };    dispatch(logInUserThunk(data));
     setEmpty(data);
   };
   let emailInputId = nanoid(3);
@@ -77,9 +79,8 @@ export const LoginPage = () => {
             }}
           >
             <Avatar
-              sx={{
-                m: 1,
-                bgcolor: 'primary.main',
+              sx={{                m: 1,
+                bgColor: 'primary.main',
                 boxShadow: 3,
                 color: '#fff',
                 // color: '#00000031',
