@@ -15,3 +15,13 @@ export const NavLink = styled(Link)`
     text-shadow: ' 0.0313rem 0.0313rem 0rem #baa2c5, -0.0313rem -0.0313rem 0rem #ffffff';
  }
 `;
+
+export const NavWrap = styled.div`
+  & > a:first-of-type {
+    margin-right: 10px;
+  }
+`;
+
+export const WelcomeMsg = styled.h1`
+   color: '#312eec'
+`;

@@ -1,5 +1,4 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 import { toast } from 'react-toastify';
 
 import { getAllContacts, addContact, deleteContact } from 'services/contacts-services'

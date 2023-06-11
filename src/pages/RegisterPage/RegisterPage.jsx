@@ -2,7 +2,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { registerUserThunk } from 'redux/auth/auth-operations';
 import { useState } from 'react';
@@ -17,6 +17,9 @@ import {
   Paper,
   TextField,
 } from '@mui/material';
+import { nanoid } from 'nanoid';
+import { ErrorMessage } from 'formik';
+import { ValidationMessage, NavLinkStyled } from './RegisterPage.styled';
 
 const defaultTheme = createTheme({
   palette: {
@@ -26,10 +29,13 @@ const defaultTheme = createTheme({
   },
 });
 
-export function RegistrationPage() {
+export function RegisterPage() {
   const dispatch = useDispatch();
   const location = useLocation();
-  const onSignUp = location.pathname === '/registration';
+  let nameInputId = nanoid(3);
+  let emailInputId = nanoid(3);
+  let passwordInputId = nanoid(3);
+  const onSignUp = location.pathname === '/register';
   const [empty, setEmpty] = useState({ name: false, email: false });
   const [passwordValid, setPasswordValid] = useState({ password: false });
 
@@ -72,10 +78,6 @@ export function RegistrationPage() {
           width: '100vh',
           backgroundImage: `url("https://mir-s3-cdn-cf.behance.net/project_modules/1400/aa50c798859809.5ee5fbc812ec0.png")`,
           backgroundRepeat: 'no-repeat',
-          backgroundColor: c =>
-            c.palette.mode === 'light'
-              ? c.palette.grey[100]
-              : c.palette.grey[900],
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
@@ -129,7 +131,7 @@ export function RegistrationPage() {
                   <TextField
                     required
                     fullWidth
-                    id="name"
+                    id={`id-${nameInputId}`}
                     label="Name"
                     autoComplete="given-name"
                     name="name"
@@ -137,12 +139,13 @@ export function RegistrationPage() {
                     error={empty.name}
                     sx={{ boxShadow: 3 }}
                   />
+                 <ErrorMessage name="name" component={ValidationMessage} /> 
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
                     required
                     fullWidth
-                    id="email"
+                    id={`id-${emailInputId}`}
                     label="Email Address"
                     name="email"
                     autoComplete="email"
@@ -152,6 +155,7 @@ export function RegistrationPage() {
                       'Example of valid email address: qwerty1@example.com'
                     }
                   />
+                  <ErrorMessage name="name" component={ValidationMessage} />
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
@@ -160,7 +164,7 @@ export function RegistrationPage() {
                     name="password"
                     label="Password"
                     type="password"
-                    id="password"
+                    id={`id-${passwordInputId}`}
                     autoComplete="new-password"
                     sx={{ boxShadow: 3 }}
                     //inputProps={{ minLength: 7 }}
@@ -168,6 +172,7 @@ export function RegistrationPage() {
                     onChange={e => setPasswordValid(e.target.value)}
                     helperText={'Password should contains at least 7 symbols'}
                   />
+                  <ErrorMessage name="name" component={ValidationMessage} />
                 </Grid>
                 <Grid item xs={12}>
                   <FormControlLabel
@@ -190,9 +195,9 @@ export function RegistrationPage() {
               <Grid container justifyContent="flex-end">
                 <Grid item>
                   {onSignUp && (
-                    <Link to={`/login`} variant="body2">
+                    <NavLinkStyled to={`/login`} variant="body2">
                       Already have an account? Sign in
-                    </Link>
+                    </NavLinkStyled>
                   )}
                 </Grid>
               </Grid>

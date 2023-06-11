@@ -10,9 +10,9 @@ import {
 
 export const registerUserThunk = createAsyncThunk(
   'auth/register',
-  async (data, { rejectWithValue }) => {
+  async (credentials, { rejectWithValue }) => {
     try {
-      const result = await userSignUp(data);
+      const result = await userSignUp(credentials);
       toast.success('Successfully registered!', {
         position: 'bottom-right',
         autoClose: 1500,
@@ -27,9 +27,9 @@ export const registerUserThunk = createAsyncThunk(
 
 export const logInUserThunk = createAsyncThunk(
   'auth/login',
-  async (data, { rejectWithValue }) => {
+  async (credentials, { rejectWithValue }) => {
     try {
-      const result = await userLogin(data);
+      const result = await userLogin(credentials);
       toast.success('Successfully logged!', {
         position: 'bottom-right',
         autoClose: 1500,
@@ -71,10 +71,10 @@ export const getCurrentUserThunk = createAsyncThunk(
   'auth/current',
   async (_, { rejectWithValue, getState }) => {
     try {
-      const {
-        auth: { token },
-      } = getState();
-      const { data } = await userCurrent(token);
+      const state = getState();
+      const savedToken = state.auth.token;
+      if (savedToken === null) return rejectWithValue();
+      const { data } = await userCurrent(savedToken);
       console.log('currentUser:', data);
       return data;
     } catch (error) {

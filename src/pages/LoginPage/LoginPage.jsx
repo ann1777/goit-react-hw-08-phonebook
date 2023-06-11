@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { logInUserThunk } from '../redux/auth/auth-operations';
+import { logInUserThunk } from '../../redux/auth/auth-operations';
 import { Link, useLocation } from 'react-router-dom';
 import {
   Avatar,
@@ -13,55 +13,27 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import {
-  ThemeProvider,
-} from 'components/ThemeProvider/ThemeProvider';
+import { ThemeProvider } from 'components/ThemeProvider/ThemeProvider';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Paper from '@mui/material/Paper';
+import { nanoid } from 'nanoid';
+import { ErrorMessage, ValidationMessage } from 'components/ContactsForm/ContactsForm.styled';
 
 export const LoginPage = () => {
   const dispatch = useDispatch();
   const location = useLocation();
-//   const navigate = useNavigate();
+  //   const navigate = useNavigate();
 
   const onSignIn = location.pathname === '/login';
 
   const [empty, setEmpty] = useState({ email: false, password: false });
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    const data = new FormData(e.currentTarget);
-
-    const user = {
-      email: data.get('email'),
-      password: data.get('password'),
-    };
-
-    if (user.email === '') {
-      setEmpty(prev => ({ ...prev, email: true }));
-      return;
-    }
-    if (user.password === '') {
-      setEmpty(prev => ({ ...prev, password: true }));
-      return;
-    }
-
-    dispatch(logInUserThunk(user));
+  const handleSubmit = data => {
+    dispatch(logInUserThunk(data));
+    setEmpty(data);
   };
-  // const handleSubmit = e => {
-  // 	e.preventDefault()
-  // 	const form = e.target
-  // 	const email = form.email.value
-  // 	const password = form.password.value
-  // 	const credentials = {
-  // 		email,
-  // 		password,
-  // 	}
-
-  // 	dispatch(logInUserThunk(credentials)).then(() => navigate('/contacts'))
-
-  // 	form.reset()
-  // }
+  let emailInputId = nanoid(3);
+  let passwordInputId = nanoid(3);
 
   return (
     <ThemeProvider>
@@ -69,14 +41,10 @@ export const LoginPage = () => {
         container
         component="main"
         sx={{
-		  height: '100vh',
-		  width: '100vh',
-		  backgroundImage: `url("https://untree.co/wp-content/uploads/2022/01/modern-login-signup-form.jpg")`,
+          height: '100vh',
+          width: '100vh',
+          backgroundImage: `url("https://untree.co/wp-content/uploads/2022/01/modern-login-signup-form.jpg")`,
           backgroundRepeat: 'no-repeat',
-          backgroundColor: c =>
-            c.palette.mode === 'light'
-              ? c.palette.grey[100]
-              : c.palette.grey[900],
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
@@ -111,7 +79,7 @@ export const LoginPage = () => {
                 m: 1,
                 bgcolor: 'primary.main',
                 boxShadow: 3,
-				color: '#fff',
+                color: '#fff',
                 // color: '#00000031',
               }}
             >
@@ -129,7 +97,6 @@ export const LoginPage = () => {
             </Typography>
             <Box
               component="form"
-              noValidate
               onSubmit={handleSubmit}
               sx={{ mt: 1 }}
             >
@@ -138,14 +105,17 @@ export const LoginPage = () => {
                   margin="normal"
                   required
                   fullWidth
-                  id="email"
+                  id={`id-${emailInputId}`}
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  placeholder="example@gmail.com"
                   autoFocus
                   error={empty.email}
                   sx={{ boxShadow: 3 }}
                 />
+                <ErrorMessage name="email" component={ValidationMessage} />
+
                 <TextField
                   margin="normal"
                   required
@@ -153,7 +123,7 @@ export const LoginPage = () => {
                   name="password"
                   label="Password"
                   type="password"
-                  id="password"
+                  id={`id-${passwordInputId}`}
                   autoComplete="current-password"
                   error={empty.password}
                   sx={{ boxShadow: 3 }}
@@ -172,7 +142,7 @@ export const LoginPage = () => {
                 </Button>
               </Grid>
 
-              <Grid container >
+              <Grid container>
                 <Grid item>
                   <Link href="#" variant="body2">
                     Forgot password?
@@ -192,73 +162,5 @@ export const LoginPage = () => {
       </Grid>
     </ThemeProvider>
   );
-};
-// <div className='flex justify-center items-center h-screen bg-darkMain'>
-// 	<form
-// 		className='flex gap-6 text-white flex-col w-1/3 p-10 border-blue-600 border-2 rounded-lg'
-// 		onSubmit={handleSubmit}
-// 	>
-// 		<h1 className='text-center text-2xl'>Login Form</h1>
-// 		<input
-// 			className='border px-2 text-black'
-// 			name='email'
-// 			placeholder='Email...'
-// 			type='text'
-// 		/>
-// 		<input
-// 			className='border px-2 text-black'
-// 			name='password'
-// 			placeholder='Password...'
-// 			type='password'
-// 		/>
-// 		<button className='border bg-blue-600 rounded-md'>Login</button>
-// 	</form>
-// </div>
-
-// import { useDispatch } from 'react-redux'
-// import { logInUserThunk } from '../redux/auth/auth-operations';
-// import { useNavigate } from 'react-router-dom'
-
-// export const LoginPage = () => {
-// 	const dispatch = useDispatch()
-// 	const navigate = useNavigate()
-// 	const handleSubmit = e => {
-// 		e.preventDefault()
-// 		const form = e.target
-// 		const email = form.email.value
-// 		const password = form.password.value
-// 		const credentials = {
-// 			email,
-// 			password,
-// 		}
-
-// 		dispatch(logInUserThunk(credentials)).then(() => navigate('/phonebook'))
-
-// 		form.reset()
-// 	}
-
-// 	return (
-// 		<div className='flex justify-center items-center h-screen bg-darkMain'>
-// 			<form
-// 				className='flex gap-6 text-white flex-col w-1/3 p-10 border-blue-600 border-2 rounded-lg'
-// 				onSubmit={handleSubmit}
-// 			>
-// 				<h1 className='text-center text-2xl'>Login Form</h1>
-// 				<input
-// 					className='border px-2 text-black'
-// 					name='email'
-// 					placeholder='Email...'
-// 					type='text'
-// 				/>
-// 				<input
-// 					className='border px-2 text-black'
-// 					name='password'
-// 					placeholder='Password...'
-// 					type='password'
-// 				/>
-// 				<button className='border bg-blue-600 rounded-md'>Login</button>
-// 			</form>
-// 		</div>
-// 	)
-// }
+}
 

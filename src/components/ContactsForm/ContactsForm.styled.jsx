@@ -100,3 +100,10 @@ export const StyledButton = styled.button`
     }
   }
 `;
+
+export const ValidationMessage = styled.div`
+  font-size: 12px;
+  color: red;
+  margin-top: 5px;
+  margin-bottom: 5px;
+`;

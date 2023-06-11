@@ -4,10 +4,10 @@ import { useDispatch } from 'react-redux';
 import { getCurrentUserThunk } from 'redux/auth/auth-operations';
 // import { selectIsUser } from 'redux/selectors';
 import { Layout } from './components/Layout/Layout';
-import {RegistrationPage} from 'pages/RegistrationPage';
-import { LoginPage } from 'pages/LoginPage';
+import {RegisterPage} from 'pages/RegisterPage/RegisterPage';
+import { LoginPage } from 'pages/LoginPage/LoginPage';
 import { PhoneAppPage } from 'pages/PhoneAppPage';
-import HomePage from 'pages/HomePage';
+import HomePage from 'pages/HomePage/HomePage';
 
 function App() {
   // const isUser = useSelector(selectIsUser);
@@ -24,7 +24,7 @@ function App() {
           {/* {isUser ? ( */}
             <Route path="/login" element={<LoginPage />} />
           {/* ) : ( */}
-            <Route path="/registration" element={<RegistrationPage />} />
+            <Route path="/register" element={<RegisterPage />} />
           {/* )} */}
           <Route path="/contacts" element={<PhoneAppPage />} />
         </Route>
