@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import { useSelector, useDispatch } from 'react-redux';
 import { addContactThunk } from 'redux/phonebook/phonebook-operations';
-import { selectPhones } from 'redux/phonebook/phonebook-selectors';
+import { getFiltredContactsList } from 'redux/phonebook/phonebook-selectors';
 import {
   Form,
   FormField,
@@ -10,14 +10,16 @@ import {
   StyledButton,
   LabelWrapper,
   ErrorMessage,
+  ValidationMessage,
 } from './ContactsForm.styled';
+import { toast } from 'react-toastify';
 
 function ContactsForm() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const dispatch = useDispatch();
 
-  const contacts = useSelector(selectPhones);
+  const contacts = useSelector(getFiltredContactsList);
   // console.log(contacts);
 
   const onNameChange = e => {
@@ -30,21 +32,26 @@ function ContactsForm() {
   const handleSubmit = e => {
     e.preventDefault();
     const newContact = {
-      id: nanoid(),
+      id: nanoid(3),
       name,
       number,
     };
-    if (contacts.find(el => el.name.toLowerCase() === name.toLowerCase())) {
-      return alert(`${name} is already in contacts.`);
+    if (contacts.some(el => el.name.toLowerCase() === name.toLowerCase())) {
+      return toast.error(`${name} is already in contacts.`);
     }
     dispatch(addContactThunk(newContact));
+    toast.success(`Contact ${newContact.name} created`);
     setName('');
     setNumber('');
   };
 
   return (
     <>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={(values, { resetForm }) => 
+      { const { name, number } = values;
+        handleSubmit({ name, number })
+        resetForm();}}
+        >
         <FormField htmlFor="name">
           <LabelWrapper>Name:</LabelWrapper>
           <InputField
@@ -57,21 +64,21 @@ function ContactsForm() {
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
           />
-          <ErrorMessage name="name" component="span" />
+          <ErrorMessage name="name" component={ValidationMessage} />
         </FormField>
         <FormField htmlFor="number">
           <LabelWrapper>Number:</LabelWrapper>
           <InputField
-            type="phone"
+            type="tel"
             name="number"
-            placeholder="tel number"
+            placeholder="+380*********"
             onChange={onInputChange}
             value={number || ''}
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
           />
-          <ErrorMessage name="number" component="span" />
+          <ErrorMessage name="number" component={ValidationMessage} />
         </FormField>
         <StyledButton type="submit">AddContact</StyledButton>
       </Form>

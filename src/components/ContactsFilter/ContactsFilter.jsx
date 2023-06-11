@@ -1,15 +1,21 @@
-import React from 'react';
-import { Input, FilterWrapper } from './ContactsFilter.styled';
+import React, { useState } from 'react';
+import { RiUserAddFill } from 'react-icons/ri';
+import { Input, FilterWrapper, FilterButton } from './ContactsFilter.styled';
 import { useSelector, useDispatch } from 'react-redux';
-import { setFilter } from 'redux/phonebook/phonebook-slice';
+import { getFilterValue } from 'redux/phonebook/phonebook-selectors';
+import { setFilterValue } from 'redux/phonebook/phonebook-slice';
 
 function ContactsFilter() {
-  const filter = useSelector(state => state.contacts.filter);
+  const [toggle, setToggle] = useState(false);
+  const filter = useSelector(getFilterValue);
   const dispatch = useDispatch();
-  const onFilterChange = e => dispatch(setFilter(e.target.value));
+  const handleClickFilterBtn = () => dispatch(setToggle(!toggle));
 
   return (
     <FilterWrapper>
+      <FilterButton onClick={handleClickFilterBtn}>
+        <RiUserAddFill />
+      </FilterButton>
       <Input
         type="text"
         name="search"
@@ -17,7 +23,7 @@ function ContactsFilter() {
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
         required
         value={filter}
-        onChange={onFilterChange}
+        onChange={event => dispatch(setFilterValue(event.target.value))}
         placeholder="Find contacts by name"
       />
     </FilterWrapper>

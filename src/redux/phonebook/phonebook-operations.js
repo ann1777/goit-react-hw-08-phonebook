@@ -1,16 +1,16 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 import { toast } from 'react-toastify';
-// import * as mockApi from 'services/mock-api';
-axios.defaults.baseURL = 'https://connections-api.herokuapp.com/';
+
+import { getAllContacts, addContact, deleteContact } from 'services/contacts-services'
+
+// axios.defaults.baseURL = 'https://connections-api.herokuapp.com/';
 
 export const fetchContactsThunk = createAsyncThunk(
   'contacts/fetchAll',
   async (_, { rejectWithValue }) => {
     try {
-      // const { data } = await mockApi.fetchContacts();
-      const { data } = await axios.get('contacts');
-      return data;
+      const contacts = await getAllContacts();
+      return contacts;
     } catch (error) {
       toast.error('Oops! Something went wrong... Getting contacts failed', {
         position: 'bottom-right',
@@ -23,12 +23,11 @@ export const fetchContactsThunk = createAsyncThunk(
 
 export const addContactThunk = createAsyncThunk(
   'contacts/addContact',
-  async (contact, { rejectWithValue }) => {
+  async (newContact, { rejectWithValue }) => {
     try {
       // const newContact = await mockApi.postContacts(contact);
-      console.log(contact);
-      const { data } = await axios.post('contacts', contact);
-      return data;
+      const contact = await addContact(newContact);
+      return contact;
     } catch (error) {
       toast.error('Oops! Something went wrong... Creating new contact failed', {
         position: 'bottom-right',
@@ -44,9 +43,9 @@ export const deleteContactThunk = createAsyncThunk(
   async (id, { rejectWithValue, dispatch }) => {
     try {
       // await mockApi.deleteContacts(id);
-      await axios.delete(`contacts/${id}`);
+      await deleteContact(id);
       dispatch(fetchContactsThunk());
-      // return id;
+      return id;
     } catch (error) {
       toast.error('Oops! Something went wrong... Delete contact failed', {
         position: 'bottom-right',

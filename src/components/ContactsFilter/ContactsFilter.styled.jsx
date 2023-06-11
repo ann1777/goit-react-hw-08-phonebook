@@ -35,3 +35,22 @@ export const LabelWrapper = styled.div`
   gap: 8px;
   margin-left: 8px;
 `;
+
+export const FilterButton = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  margin-right: 20px;
+  background-color: white;
+  color: var(--main-color);
+  border: 1px solid transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  &:hover,
+  &:focus {
+    background-color: var(--accent-color);
+    color: white;
+    box-shadow: var(--base-shadow);
+  }
+`;

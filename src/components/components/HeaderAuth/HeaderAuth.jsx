@@ -1,12 +1,15 @@
 import React from 'react';
-import { NavLink } from './HeaderAuth.styled';
+import { NavLink, NavWrap, WelcomeMsg } from './HeaderAuth.styled';
 
 const HeaderAuth = () => {
   return (
-    <div>
-      <NavLink to="/registration">Register</NavLink>|
+    <>
+    <WelcomeMsg>Welcome to the PhoneApp! Please register or Login!</WelcomeMsg>
+    <NavWrap>
+      <NavLink to="/register">Register</NavLink>|
       <NavLink to="/login">Login</NavLink>
-    </div>
+    </NavWrap>
+    </>   
   );
 };
 

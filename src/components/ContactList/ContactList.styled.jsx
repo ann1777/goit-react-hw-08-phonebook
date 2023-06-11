@@ -9,8 +9,8 @@ export const List = styled.ul`
   padding-left: 16px;
   padding-right: 16px;
 
-  max-width: 100%;
-  width: 400px;
+  width: 100%;
+  max-width: 800px;
 `;
 
 export const ContactName = styled.p`
@@ -68,9 +68,63 @@ export const ContactItem = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 16px;
+  ${'' /* gap: 16px;
 
   color: #312eec;
   text-shadow: 0.0313rem 0.0313rem 0rem #baa2c5, -0.0313rem -0.0313rem 0rem #ffffff;
   font-size: 14px;
-`
+`  */}
+  font-size: 14px;
+  width: 100%;
+  padding: 10px 12px;
+  background-color: var(--bg-color);
+  border: 1px solid var(--bg-color);
+  border-radius: 5px;
+  animation: scaleIn 1s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+  @keyframes scaleIn {
+    from {
+      transform: scale(0);
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  @media screen and (min-width: 425px) {
+    font-size: 16px;
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 18px;
+  }
+`;
+
+export const Icon = styled.div`
+  color: var(--base-color);
+  & > svg {
+    color: var(--accent-color);
+    width: 20px;
+    margin-right: 3px;
+  }
+
+  &:not(:last-child) {
+    color: var(--text-color);
+    margin-bottom: 5px;
+  }
+  @media screen and (min-width: 725px) {
+    & > svg {
+      width: 25px;
+      margin-right: 0;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    & > svg {
+      width: 35px;
+    }
+  }
+`;

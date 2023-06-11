@@ -5,10 +5,10 @@ import { RestrictedRoute } from './RestrictedRoute';
 import { Loader } from './components/Loader/Loader';
 import { PrivateRoute } from './PrivateRoute';
 
-const HomePage = lazy(() => import('pages/HomePage'));
+const HomePage = lazy(() => import('pages/HomePage/HomePage'));
 const ContactsPage = lazy(() => import('pages/PhoneAppPage'));
-const LoginPage = lazy(() => import('pages/LoginPage'));
-const RegistrationPage = lazy(() => import('pages/RegistrationPage'));
+const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
+const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
 const PageNotFound = lazy(() => import('pages/PageNotFound/PageNotFound'));
 
 const UserRoutes = () => {
@@ -18,11 +18,11 @@ const UserRoutes = () => {
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route
-            path="registration"
+            path="register"
             element={
               <RestrictedRoute
-                redirectTo="/registration"
-                component={<RegistrationPage />}
+                redirectTo="/register"
+                component={<RegisterPage />}
               />
             }
           />
