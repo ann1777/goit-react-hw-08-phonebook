@@ -65,13 +65,13 @@ const authSlice = createSlice({
       state.error = null;
       state.isLoading = true;
       return state;})
-    .addMatcher(isAnyOf(...fn(fulfilled)), state => {
-      state.user = { name: selectIsUser.name, email: selectIsUser.mail };
-      state.token = selectToken;
+    .addMatcher(isAnyOf(...fn(fulfilled)), (state,action) => {
+      console.log(action.payload)
+      state.user = action.payload.user
+      state.token = action.payload.token;
       state.isLoggedIn = true;
       state.isLoading = false;
-      state.filter = selectIsLoading;
-      return state;})
+      })
     .addMatcher(isAnyOf(...fn(rejected)), state => {
       state.isLoading = false;
       state.error = true;

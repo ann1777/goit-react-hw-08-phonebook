@@ -4,30 +4,33 @@ export const Input = styled.input`
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 16px;
-  padding-right: 16px;
+  max-width: 100%;
 
   border: 0;
   outline: 0;
   border-radius: 8px;
-  color: #2a2a2a;
-  text-shadow: 0 0.5px 0.5px 0.5px #fff;
+  color: #312eec;
+  background-color: #f7eff4;
+  box-shadow: inset 1px 1px 3px #8ba793, inset -1px -1px 5px #fff;
 
-  background-color: #fff;
-  box-shadow: inset 1px 1px 3px #b0706f, inset -1px -1px 5px #fff;
+  font-style: italic;
 
+  text-shadow: 0.0313rem 0.0313rem 0rem #baa2c5,
+    -0.0313rem -0.0313rem 0rem #ffffff;
   font-size: 14px;
+  color: #706e6f;
+  box-shadow: inset 1px 1px 3px #8ba793, inset -1px -1px 5px #fff;
 `;
 
-export const FilterWrapper = styled.label`
+export const FilterWrapper = styled.div`
   display: flex;
-  flex-direction: column;
   gap: 8px;
-
-  max-width: 100%;
-  width: 300px;
+  width: 100%;
+  justify-content: center;
 
   color: '#fff';
-  text-shadow: 0.0313rem 0.0313rem 0rem #baa2c5, -0.0313rem -0.0313rem 0rem #ffffff;
+  text-shadow: 0.0313rem 0.0313rem 0rem #baa2c5,
+    -0.0313rem -0.0313rem 0rem #ffffff;
 `;
 
 export const LabelWrapper = styled.div`

@@ -9,7 +9,6 @@ import {
   InputField,
   StyledButton,
   LabelWrapper,
-  ValidationMessage,
 } from './ContactsForm.styled';
 import { toast } from 'react-toastify';
 

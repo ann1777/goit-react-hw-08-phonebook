@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { logInUserThunk } from '../../redux/auth/auth-operations';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
   Avatar,
   Box,
@@ -17,10 +17,15 @@ import { ThemeProvider } from 'components/ThemeProvider/ThemeProvider';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Paper from '@mui/material/Paper';
 import { nanoid } from 'nanoid';
-import { ErrorMessage, ValidationMessage } from 'components/ContactsForm/ContactsForm.styled';
+import {
+  ErrorMessage,
+  ValidationMessage,
+} from 'components/ContactsForm/ContactsForm.styled';
+import { toast } from 'react-toastify';
 
 export const LoginPage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const location = useLocation();
   //   const navigate = useNavigate();
 
@@ -33,12 +38,16 @@ export const LoginPage = () => {
     const data = {
       email: e.currentTarget.elements.email.value,
       password: e.currentTarget.elements.password.value,
-    };    dispatch(logInUserThunk(data));
+    };
+    dispatch(logInUserThunk(data))
+      .unwrap()
+      .then(() => navigate('/contacts'))
+      .catch(() => toast.error('Invalid data, try again'));
     setEmpty(data);
   };
   let emailInputId = nanoid(3);
   let passwordInputId = nanoid(3);
-  
+
   return (
     <ThemeProvider>
       <Grid
@@ -53,8 +62,7 @@ export const LoginPage = () => {
           backgroundPosition: 'center',
         }}
       >
-        <CssBaseline />
-        <Grid item xs={false} sm={6} md={7} />
+        <CssBaseline /> <Grid item xs={false} sm={6} md={7} />
         <Grid
           item
           xs={12}
@@ -85,9 +93,10 @@ export const LoginPage = () => {
                 boxShadow: 3,
                 color: '#fff',
                 // color: '#00000031',
-              }}c
+              }}
+              c
             >
-           <LockOutlinedIcon />
+              <LockOutlinedIcon />
             </Avatar>
             <Typography
               component="h1"
@@ -99,11 +108,7 @@ export const LoginPage = () => {
             >
               LogIn
             </Typography>
-            <Box
-              component="form"
-              onSubmit={handleSubmit}
-              sx={{ mt: 1 }}
-            >
+            <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
               <Grid container spacing={2}>
                 <TextField
                   margin="normal"
@@ -166,5 +171,4 @@ export const LoginPage = () => {
       </Grid>
     </ThemeProvider>
   );
-}
-
+};
