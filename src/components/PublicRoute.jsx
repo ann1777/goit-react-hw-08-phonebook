@@ -6,8 +6,8 @@ import { useAuth } from 'redux/auth/useAuth';
  * - Otherwise render the component
  */
 
-export const RestrictedRoute = ({ component: Component, redirectTo = '/' }) => {
+export const PublicRoute = ({ children, restricted }) => {
   const { isLoggedIn } = useAuth();
-
-  return isLoggedIn ? <Navigate to={redirectTo} /> : Component;
+  const shouldRedirect = restricted && isLoggedIn;
+  return !shouldRedirect ? children : <Navigate to="/" />;
 };

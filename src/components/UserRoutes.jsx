@@ -1,7 +1,7 @@
 import { Suspense, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Layout } from './components/Layout/Layout';
-import { RestrictedRoute } from './RestrictedRoute';
+import { RestrictedRoute } from './PublicRoute';
 import { Loader } from './components/Loader/Loader';
 import { PrivateRoute } from './PrivateRoute';
 
@@ -29,16 +29,16 @@ const UserRoutes = () => {
           <Route
             path="login"
             element={
-              <RestrictedRoute
-                redirectTo="/login"
-                component={<LoginPage />}
-              />
+              <RestrictedRoute redirectTo="/login" component={<LoginPage />} />
             }
           />
           <Route
             path="contacts"
             element={
-              <PrivateRoute redirectTo="/contacts" component={<ContactsPage />} />
+              <PrivateRoute
+                redirectTo="/contacts"
+                component={<ContactsPage />}
+              />
             }
           />
           <Route path="*" element={<PageNotFound />} />

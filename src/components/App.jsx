@@ -4,10 +4,15 @@ import { useDispatch } from 'react-redux';
 import { getCurrentUserThunk } from 'redux/auth/auth-operations';
 // import { selectIsUser } from 'redux/selectors';
 import { Layout } from './components/Layout/Layout';
-import {RegisterPage} from 'pages/RegisterPage/RegisterPage';
+import { RegisterPage } from 'pages/RegisterPage/RegisterPage';
 import { LoginPage } from 'pages/LoginPage/LoginPage';
-import { PhoneAppPage } from 'pages/PhoneAppPage';
+// import { PhoneAppPage } from 'pages/PhoneAppPage';
 import HomePage from 'pages/HomePage/HomePage';
+import { PublicRoute } from './PublicRoute';
+import { Loader } from './components/Loader/Loader';
+import { PrivateRoute } from './PrivateRoute';
+import PageNotFound from 'pages/PageNotFound/PageNotFound';
+import { PhoneAppPage } from 'pages/PhoneAppPage';
 
 function App() {
   // const isUser = useSelector(selectIsUser);
@@ -17,19 +22,51 @@ function App() {
   }, [dispatch]);
 
   return (
-    <Suspense>
+    <Suspense fallback={<Loader />}>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
-          {/* {isUser ? ( */}
-            <Route path="/login" element={<LoginPage />} />
-          {/* ) : ( */}
-            <Route path="/register" element={<RegisterPage />} />
-          {/* )} */}
-          <Route path="/contacts" element={<PhoneAppPage />} />
+          <Route
+            path="register"
+            element={
+              <PublicRoute>
+                <RegisterPage />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="login"
+            element={
+              <PublicRoute restricted>
+                <LoginPage />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="contacts"
+            element={
+              <PrivateRoute>
+                <PhoneAppPage />
+              </PrivateRoute>
+            }
+          />
+          <Route path="*" element={<PageNotFound />} />
         </Route>
       </Routes>
     </Suspense>
+    // <Suspense>
+    //   <Routes>
+    //     <Route path="/" element={<Layout />}>
+    //       <Route index element={<HomePage />} />
+    //       {/* {isUser ? ( */}
+    //         <Route path="/login" element={<LoginPage />} />
+    //       {/* ) : ( */}
+    //         <Route path="/register" element={<RegisterPage />} />
+    //       {/* )} */}
+    //       <Route path="/contacts" element={<PhoneAppPage />} />
+    //     </Route>
+    //   </Routes>
+    // </Suspense
   );
 }
 export default App;

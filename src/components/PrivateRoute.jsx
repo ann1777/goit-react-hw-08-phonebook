@@ -6,10 +6,11 @@ import { useAuth } from 'redux/auth/useAuth';
  * - Otherwise render <Navigate> to redirectTo
  */
 
-export const PrivateRoute = ({ component: Component, redirectTo = '/' }) => {
-  const { isLoggedIn, isRefreshing } = useAuth();
+export const PrivateRoute = ({ children }) => {
+  const { isLoggedIn } = useAuth();
 
-  const shouldRedirect = !isLoggedIn && !isRefreshing;
+  // const Component = navigate('/contacts');
 
-  return shouldRedirect ? <Navigate to={redirectTo} /> : Component;
+  return isLoggedIn ? children : <Navigate to="/login" />;
+  // return isLoggedIn ? <Navigate to={redirectTo} /> : Component;
 };

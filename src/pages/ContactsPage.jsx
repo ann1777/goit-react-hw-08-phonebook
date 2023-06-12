@@ -1,5 +1,5 @@
 import Filter from 'components/ContactsFilter/ContactsFilter';
-import ContactsList from 'components/ContactsList/ContactsList';
+import ContactsList from 'components/ContactList/ContactList';
 function ContactsPage() {
   return (
     <>

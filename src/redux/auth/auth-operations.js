@@ -56,7 +56,6 @@ export const logOutUserThunk = createAsyncThunk(
         autoClose: 1500,
       });
       //console.log('logout:', data);
-     
     } catch (error) {
       toast.error('Oops! Something went wrong... Logout failed', {
         position: 'bottom-right',
@@ -84,16 +83,16 @@ export const getCurrentUserThunk = createAsyncThunk(
       });
       return rejectWithValue(`Oops! Something went wrong...`, error.message);
     }
-  },
-  {
-    condition: (_, { getState }) => {
-      const {
-        auth: { token },
-      } = getState();
-
-      if (!token) {
-        return false;
-      }
-    },
   }
+  // {
+  //   condition: (_, { getState }) => {
+  //     const {
+  //       auth: { token },
+  //     } = getState();
+
+  //     if (!token) {
+  //       return false;
+  //     }
+  //   },
+  // }
 );
