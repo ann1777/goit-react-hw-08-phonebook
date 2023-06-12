@@ -6,9 +6,9 @@ import { Layout } from './components/Layout/Layout';
 import { RegisterPage } from 'pages/RegisterPage/RegisterPage';
 import { LoginPage } from 'pages/LoginPage/LoginPage';
 import HomePage from 'pages/HomePage/HomePage';
-import { PublicRoute } from '../hoc/PublicRoute';
+import { PublicRoute } from '../hooks/PublicRoute';
 import { Loader } from './components/Loader/Loader';
-import { PrivateRoute } from '../hoc/PrivateRoute';
+import { PrivateRoute } from '../hooks/PrivateRoute';
 import PageNotFound from 'pages/PageNotFound/PageNotFound';
 import { PhoneAppPage } from 'pages/PhoneAppPage';
 

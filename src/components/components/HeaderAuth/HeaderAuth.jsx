@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, NavWrap, WelcomeMsg } from './HeaderAuth.styled';
-import { useAuth } from 'hoc/useAuth';
+import { useAuth } from 'hooks/useAuth';
 
 const HeaderAuth = () => {
   const { isLoggedIn } = useAuth();

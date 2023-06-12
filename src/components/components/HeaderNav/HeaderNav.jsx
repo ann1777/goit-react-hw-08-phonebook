@@ -1,4 +1,4 @@
-import { useAuth } from 'hoc/useAuth';
+import { useAuth } from 'hooks/useAuth';
 import { Nav, NavLink } from './HeaderNav.styled';
 
 export const HeaderNav = () => {

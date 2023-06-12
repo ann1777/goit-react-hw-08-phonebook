@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom';
-import { useAuth } from 'hoc/useAuth';
+import { useAuth } from 'hooks/useAuth';
 import PropTypes from 'prop-types';
 
 /**
@@ -15,5 +15,5 @@ export const PublicRoute = ({ children, restricted }) => {
 
 PublicRoute.propTypes = {
   children: PropTypes.element.isRequired,
-  restricted: PropTypes.bool.isRequired,
+  restricted: PropTypes.bool,
 };
