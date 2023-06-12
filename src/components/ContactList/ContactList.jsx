@@ -12,6 +12,7 @@ import {
   getLoadingStatus,
 } from 'redux/phonebook/phonebook-selectors';
 import { selectFilteredContacts } from 'redux/selectors';
+import { theme } from 'theme';
 
 function ContactList() {
   const isLoading = useSelector(getLoadingStatus);
@@ -22,13 +23,6 @@ function ContactList() {
   }, [dispatcher]);
   console.log('I am hereFetching contacts', contacts);
   const filteredContacts = useSelector(selectFilteredContacts);
-  
-  // console.log(filter);
-  // console.log(contacts);
-  // const filteredContacts = contacts.filter(el => {
-  //   console.log('Filtered el', el);
-  //   return el.name.toLowerCase().includes(filter.toLowerCase());
-  // });
 
   return (
     <List>
@@ -37,11 +31,11 @@ function ContactList() {
           return (
             <ContactItem key={id}>
               <Icon>
-                <FaUser size={16} />
+                <FaUser size={16} fill={theme.colors.accent} />
                 <span>{name} :</span>
               </Icon>
               <Icon>
-                <FaPhoneAlt size={16} />
+                <FaPhoneAlt size={16} fill={theme.colors.accent} />
                 <span>{number}</span>
               </Icon>
               <DeleteButton

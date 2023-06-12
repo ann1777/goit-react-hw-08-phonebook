@@ -12,7 +12,6 @@ import {
 } from './ContactsForm.styled';
 import { toast } from 'react-toastify';
 
-
 function ContactsForm() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
@@ -35,27 +34,22 @@ function ContactsForm() {
       name,
       number,
     };
-    // if (contacts.filter(el => el.name.toLowerCase() === name.toLowerCase())) {
-    //   return toast.error(`${name} is already in contacts.`);
-    // }
-    const item = contacts.find(el => el.name.toLowerCase() === name.toLowerCase())
-    if( item) {
-      toast.error(`${name} is already in contacts.`)
-    }
-    else {
+    const item = contacts.find(
+      el => el.name.toLowerCase() === name.toLowerCase()
+    );
+    if (item) {
+      toast.error(`${name} is already in contacts.`);
+    } else {
       dispatch(addContactThunk(newContact));
       toast.success(`Contact ${newContact.name} created`);
       setName('');
       setNumber('');
     }
- 
   };
 
   return (
     <>
-      <Form onSubmit={handleSubmit} 
-     
-        >
+      <Form onSubmit={handleSubmit}>
         <FormField htmlFor="name">
           <LabelWrapper>Name:</LabelWrapper>
           <InputField

@@ -13,9 +13,6 @@ function ContactsFilter() {
 
   return (
     <FilterWrapper>
-      <FilterButton onClick={handleClickFilterBtn}>
-        <RiUserAddFill />
-      </FilterButton>
       <Input
         type="text"
         name="search"
@@ -26,6 +23,9 @@ function ContactsFilter() {
         onChange={event => dispatch(setFilterValue(event.target.value))}
         placeholder="Find contacts by name"
       />
+      <FilterButton onClick={handleClickFilterBtn}>
+        <RiUserAddFill />
+      </FilterButton>
     </FilterWrapper>
   );
 }
