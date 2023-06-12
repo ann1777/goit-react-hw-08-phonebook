@@ -1,4 +1,4 @@
-import { useAuth } from 'redux/auth/useAuth';
+import { useAuth } from 'hoc/useAuth';
 import { Nav, NavLink } from './HeaderNav.styled';
 
 export const HeaderNav = () => {
@@ -6,8 +6,13 @@ export const HeaderNav = () => {
 
   return (
     <Nav>
-      {isLoggedIn && <> <NavLink to="/contacts">Contacts</NavLink>
-      <NavLink to="/">Home</NavLink> </>}
+      {isLoggedIn && (
+        <>
+          {' '}
+          <NavLink to="/contacts">Contacts</NavLink>
+          <NavLink to="/">Home</NavLink>{' '}
+        </>
+      )}
     </Nav>
   );
 };

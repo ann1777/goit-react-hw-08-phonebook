@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { logInUserThunk } from '../../redux/auth/auth-operations';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import {
   Avatar,
   Box,
@@ -25,9 +25,7 @@ import { toast } from 'react-toastify';
 
 export const LoginPage = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const location = useLocation();
-  //   const navigate = useNavigate();
 
   const onSignIn = location.pathname === '/login';
 
@@ -41,7 +39,6 @@ export const LoginPage = () => {
     };
     dispatch(logInUserThunk(data))
       .unwrap()
-      .then(() => navigate('/contacts'))
       .catch(() => toast.error('Invalid data, try again'));
     setEmpty(data);
   };

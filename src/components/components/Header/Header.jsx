@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { AppBar, Nav, NavBlock, UserBlock } from './Header.styled';
 import HeaderAuth from '../HeaderAuth/HeaderAuth';
-import { useAuth } from 'redux/auth/useAuth';
+import { useAuth } from 'hoc/useAuth';
 import { HeaderNav } from '../HeaderNav/HeaderNav';
 import { UserBadge } from '../UserBadge/UserBadge';
 
