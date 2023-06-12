@@ -12,6 +12,7 @@ export const PhoneAppPage = () => {
   return (
     <>
       <ThemeProvider theme={theme}>
+        <h1>Welcome to your Phonebook App!</h1>
         <Section>
           <Title title="Phone book" />
           <ContactsForm />

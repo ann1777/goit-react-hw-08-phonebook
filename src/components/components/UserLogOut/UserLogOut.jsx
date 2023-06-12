@@ -1,21 +1,17 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { getUserName } from 'redux/auth';
-import { logOut } from 'redux/auth';
-import { LogOutWrap, LogOutButton } from 'components/UserMenu/UserMenu.styled';
+import { useDispatch } from 'react-redux';
+import { LogOutButton, LogOutWrap } from './UserLogOut.styled';
+import { logOutUserThunk } from 'redux/auth/auth-operations';
 
 function UserLogOut() {
-  const user = useSelector(getUserName);
   const dispatch = useDispatch();
-
   const handleLogOut = () => {
-    dispatch(logOut());
+    dispatch(logOutUserThunk());
   };
 
   return (
     <LogOutWrap>
-      <p> {`Welcome, ${user}`}</p>
       <LogOutButton type="button" onClick={handleLogOut}>
-        Log Out
+        LogOut
       </LogOutButton>
     </LogOutWrap>
   );

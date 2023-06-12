@@ -13,7 +13,7 @@ function NavBar() {
       <Container>
         <Nav>
           <MainNav />
-          {isLoggedIn ? <UserLogOut /> : <AuthNav />}
+          <AuthNav />
         </Nav>
       </Container>
     </AppНeader>

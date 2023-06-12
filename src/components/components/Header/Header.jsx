@@ -59,7 +59,7 @@ const Header = () => {
           <Link to="/">
             <img src={Logo} alt="logo" width={48} />
           </Link>
-        </Typography> 
+        </Typography>
         <Divider />
         <Nav>
           <HeaderNav />
@@ -81,7 +81,6 @@ const Header = () => {
           width: '100%',
         }}
       >
-           
         <AppBar
           component={'nav'}
           sx={{

@@ -1,3 +1,4 @@
+import { theme } from 'components/theme';
 import styled from 'styled-components';
 
 export const Input = styled.input`
@@ -5,7 +6,7 @@ export const Input = styled.input`
   padding-bottom: 8px;
   padding-left: 16px;
   max-width: 100%;
-
+  width: 400px;
   border: 0;
   outline: 0;
   border-radius: 8px;
@@ -45,15 +46,15 @@ export const FilterButton = styled.div`
   justify-content: center;
   padding: 10px;
   margin-right: 20px;
-  background-color: white;
+  background-color: ${theme.colors.background};
   color: var(--main-color);
   border: 1px solid transparent;
   border-radius: 50%;
   cursor: pointer;
   &:hover,
   &:focus {
-    background-color: var(--accent-color);
-    color: white;
-    box-shadow: var(--base-shadow);
+    background-color: ${theme.colors.background};
+    color: ${theme.colors.accent};
+    box-shadow: ${theme.shadows.boxShadow};
   }
 `;

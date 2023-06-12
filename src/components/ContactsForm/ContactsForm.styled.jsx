@@ -21,7 +21,8 @@ export const FormField = styled.label`
   width: 500px;
 
   color: #312eec;
-  text-shadow: 0.0313rem 0.0313rem 0rem #baa2c5, -0.0313rem -0.0313rem 0rem #ffffff;
+  text-shadow: 0.0313rem 0.0313rem 0rem #baa2c5,
+    -0.0313rem -0.0313rem 0rem #ffffff;
 `;
 
 export const LabelWrapper = styled.div`
@@ -45,7 +46,8 @@ export const InputField = styled.input`
 
   font-style: italic;
 
-  text-shadow: 0.0313rem 0.0313rem 0rem #baa2c5, -0.0313rem -0.0313rem 0rem #ffffff;
+  text-shadow: 0.0313rem 0.0313rem 0rem #baa2c5,
+    -0.0313rem -0.0313rem 0rem #ffffff;
   font-size: 14px;
   color: #706e6f;
   box-shadow: inset 1px 1px 3px #8ba793, inset -1px -1px 5px #fff;
@@ -74,7 +76,8 @@ export const StyledButton = styled.button`
   outline: none;
   border-radius: 8px;
 
-  box-shadow: 0.3125rem -0.3125rem 1.25rem #fff, 0.3125rem 0.3125rem 1.25rem #babecc;
+  box-shadow: 0.3125rem -0.3125rem 1.25rem #fff,
+    0.3125rem 0.3125rem 1.25rem #babecc;
   transition: all 0.2s ease-in-out;
 
   background-color: #97f1ff;
