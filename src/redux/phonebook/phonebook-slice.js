@@ -28,7 +28,7 @@ export const filterSlice = createSlice({
 });
 
 export const { setFilterValue } = filterSlice.actions;
-export const contactsReducer = contactsSlice.reducer;
+
 export const filterReducer = filterSlice.reducer;
 
 
@@ -65,14 +65,4 @@ const loadingSlice = createSlice({
   },
 });
 
-const items = contactsSlice.reducer;
-const filter = filterSlice.reducer;
-const error = errorSlice.reducer;
-const isLoading = loadingSlice.reducer;
-
-export default combineReducers({
-  items,
-  filter,
-  error,
-  isLoading,
-});
+export const contactsReducer = contactsSlice.reducer;

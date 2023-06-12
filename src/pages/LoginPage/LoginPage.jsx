@@ -142,7 +142,7 @@ export const LoginPage = () => {
                   variant="contained"
                   sx={{ mt: 3, mb: 2, boxShadow: 3 }}
                 >
-                  LogIn
+                  Log in
                 </Button>
               </Grid>
 

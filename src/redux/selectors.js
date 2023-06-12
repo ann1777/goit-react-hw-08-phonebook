@@ -9,10 +9,10 @@ export const selectIsRefreshing = state => state.auth.isRefreshing;
 // contacts
 export const selectIsLoading = ({ contacts }) => contacts.isLoading;
 export const selectError = ({ contacts }) => contacts.error;
-export const selectFilter = ({ filter }) => filter;
+export const selectFilter = state => state.filter;
 
 export const selectContacts = ({ contacts }) =>
-  [...contacts.items].sort((a, b) => a.name.localeCompare(b.name));
+  [...contacts].sort((a, b) => a.name.localeCompare(b.name));
 
 export const selectFilteredContacts = createSelector(
   [selectContacts, selectFilter],

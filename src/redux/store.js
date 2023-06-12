@@ -1,6 +1,7 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import storage from 'redux-persist/lib/storage';
-import { combineReducers } from 'redux';
+// import storage from 'redux-persist/lib/storage';
+// import { combineReducers } from 'redux';
+
 // import { contactsReducer, filterReducer } from './phonebook/phonebook-slice';
 import {
   persistStore,
@@ -12,8 +13,13 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import { contactsReducer } from './phonebook/phonebook-slice';
-import authReduser from './auth/auth-slice';
+import storage from 'redux-persist/lib/storage';
+// import { contactsReducer } from './phonebook/phonebook-slice';
+// import authReduser from './auth/auth-slice';
+// import { filter } from './phonebook/phonebook-selectors';
+
+import { authReducer } from './auth/auth-slice'
+import { contactsReducer, filterReducer } from './phonebook/phonebook-slice';
 // import persistedAuthReducer from './auth/auth-slice';
 
 const persistConfig = {
@@ -21,6 +27,7 @@ const persistConfig = {
   storage,
   whitelist: ['token'],
 };
+const persistedReducer = persistReducer(persistConfig, authReducer)
 
 // export const store = configureStore({
 //   reducer: {
@@ -45,13 +52,17 @@ const middleware = [
   }),
 ];
 
-const rootReducer = combineReducers({
-  contacts: contactsReducer,
-  auth: persistReducer(persistConfig, authReduser),
-});
+// const rootReducer = combineReducers({
+//   contacts: contactsReducer,
+//   auth: persistReducer(persistConfig, authReduser),
+// });
 
 export const store = configureStore({
-  reducer: rootReducer,
+  reducer: {
+    contacts: contactsReducer,
+  filter: filterReducer,
+  auth: persistedReducer,
+  },
   middleware,
   devTools: process.env.NODE_ENV === 'development',
 });

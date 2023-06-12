@@ -21,13 +21,14 @@ function ContactList() {
     dispatcher(fetchContactsThunk());
   }, [dispatcher]);
   console.log('I am hereFetching contacts', contacts);
-  const filter = useSelector(selectFilteredContacts);
-  console.log(filter);
-  console.log(contacts);
-  const filteredContacts = contacts.filter(el => {
-    console.log('Filtered el', el);
-    return el.name.toLowerCase().includes(filter.toLowerCase());
-  });
+  const filteredContacts = useSelector(selectFilteredContacts);
+  
+  // console.log(filter);
+  // console.log(contacts);
+  // const filteredContacts = contacts.filter(el => {
+  //   console.log('Filtered el', el);
+  //   return el.name.toLowerCase().includes(filter.toLowerCase());
+  // });
 
   return (
     <List>
