@@ -117,7 +117,7 @@ export function RegisterPage() {
                 alignItems: 'center',
               }}
             >
-              <Avatar sx={{ m: 1, bgcolor: 'primary.main', boxShadow: 3 }}>
+              <Avatar sx={{ m: 1, bgColor: 'primary.main', boxShadow: 3 }}>
                 <LockOutlinedIcon />
               </Avatar>
               <Typography

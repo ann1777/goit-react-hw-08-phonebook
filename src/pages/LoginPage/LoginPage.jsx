@@ -89,7 +89,6 @@ export const LoginPage = () => {
                 bgColor: 'primary.main',
                 boxShadow: 3,
                 color: '#fff',
-                // color: '#00000031',
               }}
               c
             >
