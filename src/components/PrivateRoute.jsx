@@ -1,5 +1,6 @@
 import { Navigate } from 'react-router-dom';
 import { useAuth } from 'redux/auth/useAuth';
+import PropTypes from 'prop-types';
 
 /**
  * - If the route is private and the user is logged in, render the component
@@ -13,4 +14,9 @@ export const PrivateRoute = ({ children }) => {
 
   return isLoggedIn ? children : <Navigate to="/login" />;
   // return isLoggedIn ? <Navigate to={redirectTo} /> : Component;
+};
+
+PrivateRoute.propTypes = {
+  children: PropTypes.element.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired,
 };
