@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavLink, NavWrap, WelcomeMsg } from './HeaderAuth.styled';
 import { useAuth } from 'redux/auth/useAuth';
-import { UserBadge } from '../UserBadge/UserBadge';
 
 const HeaderAuth = () => {
   const { isLoggedIn } = useAuth();
@@ -21,10 +20,7 @@ const HeaderAuth = () => {
         </>
       ) : (
         <>
-          <WelcomeMsg>
-            Welcome to the PhoneApp! Please register or Login!
-          </WelcomeMsg>
-          <UserBadge />
+          <p>Welcome to the PhoneApp! Please find your contacts!</p>
         </>
       )}
     </>

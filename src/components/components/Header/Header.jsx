@@ -68,6 +68,7 @@ const Header = () => {
       </Box>
     </ThemeProvider>
   );
+  console.log(isLoggedIn);
 
   return (
     <ThemeProvider theme={defaultTheme}>

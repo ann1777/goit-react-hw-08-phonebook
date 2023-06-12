@@ -1,30 +1,26 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logOutUserThunk } from 'redux/auth/auth-operations';
 import { StyledBadge, Wrapper } from './UserBadge.styled';
 // import { useAuth } from 'redux/auth/useAuth';
 import { Chip } from '@mui/material';
+import { currentUser } from 'redux/auth/auth-selectors';
 // import { Avatar } from '@mui/material';
 export const UserBadge = () => {
   const dispatch = useDispatch();
-  // const { user } = useAuth();
+  const user = useSelector(currentUser);
 
   const handleLogOut = () => dispatch(logOutUserThunk());
 
   return (
     <Wrapper>
+      {user && <p>Welcome, {user.name}</p>}
       <Chip
         avatar={
           <StyledBadge
             overlap="circular"
             anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
             variant="dot"
-          >
-            {/* <Avatar
-              alt="avatar"
-              src={`https://source.unsplash.com/1200x1200?${user.name}`}
-              sx={{ width: 24, height: 24 }}
-            /> */}
-          </StyledBadge>
+          ></StyledBadge>
         }
         label="LogOut"
         variant="outlined"
