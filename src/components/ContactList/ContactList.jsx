@@ -10,8 +10,8 @@ import {
 import {
   getFiltredContactsList,
   getLoadingStatus,
+  selectFilteredContacts,
 } from 'redux/phonebook/phonebook-selectors';
-import { selectFilteredContacts } from 'redux/selectors';
 import { theme } from 'theme';
 
 function ContactList() {
