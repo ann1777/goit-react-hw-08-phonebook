@@ -6,11 +6,11 @@ import { Layout } from './components/Layout/Layout';
 import { RegisterPage } from 'pages/RegisterPage/RegisterPage';
 import { LoginPage } from 'pages/LoginPage/LoginPage';
 import HomePage from 'pages/HomePage/HomePage';
-import { PublicRoute } from '../hooks/PublicRoute';
 import { Loader } from './components/Loader/Loader';
-import { PrivateRoute } from '../hooks/PrivateRoute';
 import PageNotFound from 'pages/PageNotFound/PageNotFound';
 import { PhoneAppPage } from 'pages/PhoneAppPage';
+import { PublicRoute } from './PublicRoute';
+import { PrivateRoute } from './PrivateRoute';
 
 function App() {
   const dispatch = useDispatch();
